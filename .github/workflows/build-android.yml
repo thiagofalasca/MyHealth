@@ -18,7 +18,6 @@ env:
 
 jobs:
   build:
-    timeout-minutes: 20
     runs-on: macos-latest
     
     steps:
