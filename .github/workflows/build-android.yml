@@ -32,5 +32,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Start emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86
+          profile: Nexus_5X_API_29
+          timeout-seconds: 360
+
       - name: Build and test
         run: npx react-native run-android
