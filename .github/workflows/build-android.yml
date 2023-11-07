@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '18'
 
       - name: Cache Node modules
         uses: actions/cache@v2
@@ -43,8 +43,11 @@ jobs:
       - name: Accept Android licenses
         run: yes | sdkmanager --licenses
 
+      - name: Install Android tools
+        run: sdkmanager "tools" "platform-tools"
+
       - name: Create emulator
-        run: echo no | android create avd --force -n test -t android-30 --abi google_apis/x86
+        run: echo no | avdmanager create avd -n test -k "system-images;android-30;google_apis;x86" --force
 
       - name: Start emulator
         run: emulator -avd test -no-audio -no-window
