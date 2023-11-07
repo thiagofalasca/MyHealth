@@ -47,7 +47,7 @@ jobs:
         run: sdkmanager "tools" "platform-tools"
 
       - name: Create emulator
-        run: echo no | avdmanager create avd -n test -k "system-images;android-30;google_apis;x86" --force
+        run: echo no | avdmanager create avd -n test -d "pixel" -k "system-images;android-30;google_apis;x86" --force
 
       - name: Start emulator
         run: emulator -avd test -no-audio -no-window
