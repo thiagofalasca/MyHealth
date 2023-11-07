@@ -44,9 +44,12 @@ jobs:
       - name: Install Android tools
         run: sdkmanager "tools" "platform-tools"
 
-      - name: Create emulator
-        run: echo no | avdmanager create avd -n test -d "pixel" -k "system-images;android-30;google_apis;x86" --force
-
+      - name: run tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: ./gradlew connectedCheck
+          
       - name: Start emulator
         run: emulator -avd test -no-audio -no-window
 
