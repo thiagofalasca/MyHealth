@@ -4,13 +4,13 @@ import { getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDHx74hHmaq-xdIR-oRbYDzyVKeToMejvQ",
-    authDomain: "mobileproject-2bb0d.firebaseapp.com",
-    projectId: "mobileproject-2bb0d",
-    storageBucket: "mobileproject-2bb0d.appspot.com",
-    messagingSenderId: "442157819630",
-    appId: "1:442157819630:web:5be7a660e358cbae20f5ff"
-  };
+  apiKey: "AIzaSyBOkQSosDSbUR67c_TarEqBZdl4-IHfeoU",
+  authDomain: "myhealth-52d50.firebaseapp.com",
+  projectId: "myhealth-52d50",
+  storageBucket: "myhealth-52d50.appspot.com",
+  messagingSenderId: "32602053712",
+  appId: "1:32602053712:web:74d6fb74e0a7c25e6bc555"
+};
 
 const app = initializeApp(firebaseConfig);
 
