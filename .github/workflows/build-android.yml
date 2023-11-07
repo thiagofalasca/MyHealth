@@ -38,20 +38,20 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v2
         with:
-          sdk-platform: '30'
+          sdk-platform: '31'
 
       - name: Accept Android licenses
         run: yes | sdkmanager --licenses
 
       - name: Install emulator dependencies
-        run: sdkmanager "emulator" "system-images;android-30;google_apis;x86"
+        run: sdkmanager "emulator" "system-images;android-31;google_apis;x86"
 
       - name: Create and start emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 30
+          api-level: 31
           target: default
-          profile: Nexus_5X_API_30
+          profile: Nexus_5X_API_31
 
       - name: Wait for emulator
         run: adb wait-for-device
