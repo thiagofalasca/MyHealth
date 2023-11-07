@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '14'
 
       - name: Cache Node modules
         uses: actions/cache@v2
@@ -43,8 +43,14 @@ jobs:
       - name: Accept Android licenses
         run: yes | sdkmanager --licenses
 
+      - name: Install emulator dependencies
+        run: sdkmanager "emulator" "system-images;android-30;google_apis;x86"
+
+      - name: Create emulator
+        run: echo no | avdmanager create avd -n test -k "system-images;android-30;google_apis;x86" --force
+
       - name: Start emulator
-        run: emulator -avd Pixel_3_API_30 -no-audio -no-window
+        run: emulator -avd test -no-audio -no-window
 
       - name: Wait for emulator
         run: adb wait-for-device
