@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '14'
 
       - name: Cache Node modules
         uses: actions/cache@v2
@@ -38,20 +38,20 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v2
         with:
-          sdk-platform: '31'
+          sdk-platform: '30'
 
       - name: Accept Android licenses
         run: yes | sdkmanager --licenses
 
       - name: Install emulator dependencies
-        run: sdkmanager "emulator" "system-images;android-31;google_apis;x86"
+        run: sdkmanager "emulator" "system-images;android-30;google_apis;x86"
 
       - name: Create and start emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 31
+          api-level: 30
           target: default
-          profile: Nexus_5X_API_31
+          profile: Nexus_5X_API_30
 
       - name: Wait for emulator
         run: adb wait-for-device
