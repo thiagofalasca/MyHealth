@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '18'
 
       - name: Cache Node modules
         uses: actions/cache@v2
@@ -43,11 +43,8 @@ jobs:
       - name: Accept Android licenses
         run: yes | sdkmanager --licenses
 
-      - name: Install emulator dependencies
-        run: sdkmanager "emulator" "system-images;android-30;google_apis;x86"
-
       - name: Create and start emulator
-        uses: reactivecircus/android-emulator-runner@v2
+        uses: wzieba/Android-Emulator-Github-Action@v1
         with:
           api-level: 30
           target: default
