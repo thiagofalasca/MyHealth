@@ -38,9 +38,6 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Build SampleApplication
-        run: ./gradlew --no-daemon build
-
       - name: Accept Android licenses
         run: yes | sdkmanager --licenses
 
