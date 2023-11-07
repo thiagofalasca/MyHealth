@@ -60,5 +60,8 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
         
-      - name: Build and test
+      - name: Build application
         run: npx react-native run-android
+
+      - name: Test
+        run: npm run test
