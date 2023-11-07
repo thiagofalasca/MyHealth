@@ -46,11 +46,12 @@ jobs:
       - name: Install emulator dependencies
         run: sdkmanager "emulator" "system-images;android-30;google_apis;x86"
 
-      - name: Create emulator
-        run: echo no | avdmanager create avd -n test -k "system-images;android-30;google_apis;x86" --force
-
-      - name: Start emulator
-        run: emulator -avd test -no-audio -no-window
+      - name: Create and start emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          target: default
+          profile: Nexus_5X_API_30
 
       - name: Wait for emulator
         run: adb wait-for-device
