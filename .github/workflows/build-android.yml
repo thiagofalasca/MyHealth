@@ -1,6 +1,11 @@
 name: Android emulator
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
     
 env:
   ANDROID_ARCH: x86_64
@@ -12,11 +17,26 @@ env:
   EMULATOR_NAME: android
 
 jobs:
-  playwright-emulator:
+  build:
     timeout-minutes: 20
     runs-on: macos-latest
+    
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Cache Node modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
         
       - name: Add avdmanager and sdkmanager to system PATH
         run: |
@@ -35,3 +55,6 @@ jobs:
         run: |
           chmod +x ./start_emu_headless.sh
           EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT EMULATOR_NAME=$EMULATOR_NAME ./start_emu_headless.sh
+
+      - name: Build and test
+        run: npx react-native run-android
